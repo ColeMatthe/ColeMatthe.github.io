@@ -10,6 +10,10 @@
 <meta property="og:url" content="https://colematthe.github.io/">
 <meta property="og:image" content="https://colematthe.github.io/fsae-car.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#e8510b">
 <style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Cole Matthews</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +24,7 @@
 <script>
 (function () {
   var r = document.documentElement, v = (location.hash || "").slice(1);
-  var views = ["home", "adag", "mclaren", "misfire", "fridge", "crest", "fsae", "builds", "about", "resume"];
+  var views = ["home", "adag", "mclaren", "misfire", "fridge", "crest", "fsae", "flying", "builds", "about", "resume"];
   r.classList.add("js");
   r.setAttribute("data-view", views.indexOf(v) > -1 ? v : "home");
   try { var t = localStorage.getItem("cm.theme"); if (t === "light" || t === "dark") r.setAttribute("data-theme", t); } catch (e) {}
@@ -73,7 +77,7 @@ a { color: inherit; }
 
 .js [data-view] { display: none; }
 html[data-view="home"] [data-view="home"], html[data-view="adag"] [data-view="adag"], html[data-view="mclaren"] [data-view="mclaren"],
-html[data-view="misfire"] [data-view="misfire"], html[data-view="fridge"] [data-view="fridge"], html[data-view="crest"] [data-view="crest"], html[data-view="fsae"] [data-view="fsae"], html[data-view="builds"] [data-view="builds"],
+html[data-view="misfire"] [data-view="misfire"], html[data-view="fridge"] [data-view="fridge"], html[data-view="crest"] [data-view="crest"], html[data-view="fsae"] [data-view="fsae"], html[data-view="flying"] [data-view="flying"], html[data-view="builds"] [data-view="builds"],
 html[data-view="about"] [data-view="about"], html[data-view="resume"] [data-view="resume"] { display: block; }
 
 /* Internship photos: shown when the work/ folder exists, swapped for the line drawings when it doesn't */
@@ -175,6 +179,20 @@ h2 { font-family: var(--font-display); font-weight: 750; font-stretch: 85%; font
 .queue ol { margin: 0; padding-left: 1.2em; color: var(--ink-2); font-size: .95rem; }
 .queue ol li { margin: 3px 0; }
 .queue ol li::marker { font-family: var(--font-mono); font-size: .75rem; color: var(--accent-ink); }
+/* The one personal entry gets a full-width card with its picture beside the text */
+.card.wide { grid-column: 1 / -1; }
+@media (min-width: 721px) {
+  .card.wide { flex-direction: row; }
+  .card.wide .plate { flex: 0 0 46%; border-bottom: 0; border-right: 1px solid var(--rule); }
+  .card.wide .card-body { justify-content: center; }
+  .card.wide .figs { margin-top: 6px; }
+}
+/* Aircraft comparison on the flying page */
+.ac { width: 100%; border-collapse: collapse; margin: 4px 0 18px; font-size: 1rem; line-height: 1.4; }
+.ac th, .ac td { text-align: left; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.ac thead th { font-family: var(--font-mono); font-size: .64rem; font-weight: 400; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); border-bottom: 1.5px solid var(--ink); padding-top: 0; }
+.ac tbody th { font-weight: 600; color: var(--ink); width: 24%; }
+.ac td { color: var(--ink-2); }
 /* Six project cards fill two rows; the queue runs the full width underneath */
 .queue { grid-column: 1 / -1; }
 @media (min-width: 721px) {
@@ -456,13 +474,13 @@ h2 { font-family: var(--font-display); font-weight: 750; font-stretch: 85%; font
         <div class="section-head">
           <div>
             <h2>Projects</h2>
-            <p class="sub">Work from internships, coursework and Formula SAE. Planned builds are kept separate.</p>
+            <p class="sub">Work from internships, coursework and Formula SAE, plus flight training. Planned builds are kept separate.</p>
           </div>
         </div>
         <div class="cards">
           <a class="card" href="#adag">
             <div class="plate drawing">
-              <img class="work shot" src="adag-temp-card.jpg" alt="CFD model in Cadence Reality DC: rows of racks with air streamlines colored by temperature" loading="lazy" width="1200" height="750">
+              <img class="work shot" src="adag-temp-card.jpg" alt="Cadence Reality DC model of a fan wall cooling unit and two rack rows, with air streamlines colored by temperature" loading="lazy" width="1200" height="750">
               <svg class="nowork-only" viewBox="0 0 400 250" role="img" aria-label="Schematic of a server rack with a rear-door heat exchanger">
                 <defs><pattern id="fins-a" width="16" height="6" patternUnits="userSpaceOnUse"><line class="d-fin" x1="0" y1="3" x2="16" y2="3"/></pattern></defs>
                 <line class="d-ln" x1="24" y1="212" x2="376" y2="212"/>
@@ -506,7 +524,7 @@ h2 { font-family: var(--font-display); font-weight: 750; font-stretch: 85%; font
               <span class="kicker">Internship · McLaren Applied · 2025</span>
               <h3>Formula&nbsp;1 ECU validation</h3>
               <p>Validation workflows and test cases for the TAG-700, the standard ECU on every 2026 Formula&nbsp;1 car, plus work on a trackside diagnostics rig.</p>
-              <ul class="figs"><li><b>TAG-700</b> ECU</li><li><b>12+</b> test cases</li><li><b>Sole</b> intern</li></ul>
+              <ul class="figs"><li><b>TAG-700</b> ECU</li><li><b>12+</b> test cases</li><li><b>4</b> test areas</li></ul>
               <span class="more">Read more</span>
             </div>
           </a>
@@ -523,9 +541,9 @@ h2 { font-family: var(--font-display); font-weight: 750; font-stretch: 85%; font
           <a class="card" href="#fridge">
             <div class="plate"><img src="fridge-card.jpg" alt="Side of the finished fridge: a taped plywood box with a power supply, heat sinks and fans mounted on it" loading="lazy" width="1200" height="750"></div>
             <div class="card-body">
-              <span class="kicker">Coursework · Duke design course · 2024–25</span>
+              <span class="kicker">Coursework · Duke EGR 101 · 2024–25</span>
               <h3>Low-cost thermoelectric fridge</h3>
-              <p>A Peltier-cooled fridge for low-income households in Bangladesh, built by a team of four and tested against six requirements.</p>
+              <p>A Peltier-cooled fridge for low-income households in Bangladesh, tested against six requirements. In a team of four, I built the box and wired the electronics.</p>
               <ul class="figs"><li><b>3 of 5</b> targets met</li><li><b>1.49</b> ft³</li><li><b>2+ h</b> off-grid hold</li></ul>
               <span class="more">Read more</span>
             </div>
@@ -547,6 +565,16 @@ h2 { font-family: var(--font-display); font-weight: 750; font-stretch: 85%; font
               <h3>Formula SAE powertrain</h3>
               <p>Engine calibration, drivetrain setup, and fitting the powertrain together with the chassis and electrical sub-teams.</p>
               <ul class="figs"><li><b>Powertrain</b> sub-team</li><li><b>Car</b> #34</li></ul>
+              <span class="more">Read more</span>
+            </div>
+          </a>
+          <a class="card wide" href="#flying">
+            <div class="plate"><img src="fly-cockpit-card.jpg" alt="Instrument panel of a Piper PA-28 Warrior seen from the right seat, with the yoke and a headset" loading="lazy" width="1200" height="750"></div>
+            <div class="card-body">
+              <span class="kicker">Personal · Flight training, UK</span>
+              <h3>Learning to fly</h3>
+              <p>Training for a UK private pilot’s license in the Cessna 152 and the Piper PA-28 Warrior II. I also hold a UK CAA drone license.</p>
+              <ul class="figs"><li><b>PPL</b> in training</li><li><b>2</b> aircraft types</li><li><b>CAA</b> drone license</li></ul>
               <span class="more">Read more</span>
             </div>
           </a>
@@ -613,7 +641,7 @@ h2 { font-family: var(--font-display); font-weight: 750; font-stretch: 85%; font
       </dl>
       <div class="pbody">
         <div class="prose">
-          <figure class="feature work"><img class="shot" src="adag-temp.jpg" alt="Cadence Reality DC model with two rows of racks and air streamlines colored by temperature, blue for cool air and red for hot" loading="lazy" width="1600" height="955"><figcaption>Air streamlines in one of the Reality DC models, colored by temperature from 20&nbsp;°C (blue) to above 38&nbsp;°C (red).</figcaption></figure>
+          <figure class="feature work"><img class="shot" src="adag-temp.jpg" alt="Cadence Reality DC model of a fan wall cooling unit and two rack rows, with air streamlines colored by temperature and three result planes in front of the supply face" loading="lazy" width="1600" height="955"><figcaption>The fan wall model from the fidelity study. Streamlines show the air, colored by temperature from 20&nbsp;°C (blue) to above 38&nbsp;°C (red). The three slices are the planes 1, 5 and 10&nbsp;ft from the supply face, where the tiers were compared.</figcaption></figure>
           <figure class="feature nowork-only">
             <div class="plate drawing">
               <svg viewBox="0 0 400 250" role="img" aria-label="Schematic of a server rack with a rear-door heat exchanger">
@@ -643,12 +671,10 @@ h2 { font-family: var(--font-display); font-weight: 750; font-stretch: 85%; font
             <li>Compared the tiers on rack-inlet temperatures, temperature profiles 1, 5 and 10&nbsp;ft from the supply face, cold-aisle velocity and external static pressure, with solve time as the cost. Then picked the cheapest model that stayed within ±5%.</li>
             <li>Modeled a rear-door heat exchanger for GPU racks at about 50&nbsp;kW per rack.</li>
           </ul>
-          <figure class="feature work"><img class="shot" src="adag-velocity.jpg" alt="Reality DC model of a single cabinet with blue velocity arrows streaming toward it and looping over the top" loading="lazy" width="1600" height="955"><figcaption>Velocity streamlines around a single cabinet, from 0 to about 21&nbsp;m/s.</figcaption></figure>
+          <figure class="feature work"><img class="shot" src="adag-velocity.jpg" alt="Reality DC model of a single rack with a rear-door heat exchanger, with velocity arrows streaming toward it and looping over the top" loading="lazy" width="1600" height="955"><figcaption>The rear-door heat exchanger model: velocity streamlines around a single rack, from 0 to about 21&nbsp;m/s.</figcaption></figure>
           <h2>Trade-offs</h2>
           <p><strong>Detail against cost.</strong> A simpler model is only worth using if it gives the same answer as the detailed one, within a set tolerance.</p>
           <p><strong>Heat rejection against pressure drop.</strong> A denser rear-door coil removes more heat, but it adds air-side pressure drop that the server fans have to overcome.</p>
-          <h2>Result</h2>
-          <p class="todo"><span class="todo-tag">To add</span>What the cheaper model saved, in setup time or solve time.</p>
         </div>
         <dl class="specs">
           <div class="specs-title">Specifications</div>
@@ -669,7 +695,7 @@ h2 { font-family: var(--font-display); font-weight: 750; font-stretch: 85%; font
         <a class="back" href="#projects">← All projects</a>
         <p class="eyebrow">Internship · McLaren Applied, Woking · May–Jul 2025</p>
         <h1 class="ptitle">Formula&nbsp;1 ECU validation</h1>
-        <p class="lede">Validation work on the TAG-700, the standard engine control unit on every 2026 Formula&nbsp;1 car. I was the firm’s sole intern.</p>
+        <p class="lede">Validation work on the TAG-700, the standard engine control unit on every 2026 Formula&nbsp;1 car: test cases, validation workflows and an early trackside diagnostics rig.</p>
       </div>
       <dl class="strip">
         <div><dt>Status</dt><dd><span class="chip chip-done">Completed</span></dd></div>
@@ -845,14 +871,14 @@ h2 { font-family: var(--font-display); font-weight: 750; font-stretch: 85%; font
     <section data-view="fridge">
       <div class="phead">
         <a class="back" href="#projects">← All projects</a>
-        <p class="eyebrow">Coursework · Duke first-year design course, team of four · 2024–25</p>
+        <p class="eyebrow">Coursework · EGR 101, Duke’s first-year design course · Team of four · 2024–25</p>
         <h1 class="ptitle">Low-cost thermoelectric fridge</h1>
-        <p class="lede">A cheap, portable fridge for low-income households in Bangladesh. Our team of four set six requirements, built the fridge from plywood, foam and a thermoelectric cooler, and tested it. It met three of the five requirements we tested.</p>
+        <p class="lede">A cheap, portable fridge for low-income households in Bangladesh. Our team of four set six requirements, built the fridge from plywood, foam and a thermoelectric cooler, and tested it. I built the box and wired the electronics. It met three of the five requirements we tested.</p>
       </div>
       <dl class="strip">
         <div><dt>Status</dt><dd><span class="chip chip-done">Completed</span></dd></div>
         <div><dt>Team</dt><dd>Four students</dd></div>
-        <div><dt>Cooling</dt><dd>Thermoelectric (Peltier)</dd></div>
+        <div><dt>My part</dt><dd>Built the box, wired the electronics</dd></div>
         <div><dt>Result</dt><dd>3 of 5 tested targets met</dd></div>
       </dl>
       <div class="pbody">
@@ -879,6 +905,7 @@ h2 { font-family: var(--font-display); font-weight: 750; font-stretch: 85%; font
           </table>
 
           <h2>How it’s built</h2>
+          <p>I built the box and wired the cooling system: the Peltier module, its fans and the power supply.</p>
           <ul>
             <li><strong>Insulation.</strong> A plywood box lined with XPS foam, with the foam seams staggered so air can’t leak straight through.</li>
             <li><strong>Sealing.</strong> Tape along every edge to trap air and cut convection, and a lid of wood and XPS with a window seal around it.</li>
@@ -912,7 +939,8 @@ h2 { font-family: var(--font-display); font-weight: 750; font-stretch: 85%; font
           <div><dt>Energy use</dt><dd>2.7 kWh a day</dd></div>
           <div><dt>Off-grid hold</dt><dd>Over 2 hours to warm to room temperature</dd></div>
           <div><dt>Materials</dt><dd>Plywood, XPS foam, window seal, tape</dd></div>
-          <div><dt>Team</dt><dd>Four students, Duke first-year design course</dd></div>
+          <div><dt>My part</dt><dd>Box build, electronics and wiring</dd></div>
+          <div><dt>Course</dt><dd>EGR 101, Duke’s first-year design course; team of four</dd></div>
         </dl>
       </div>
       <nav class="pnext" aria-label="Project navigation"><a class="textlink" href="#misfire">Previous: Engine misfire diagnosis</a><a class="textlink" href="#crest">Next: Optimizing 3D printing for space</a></nav>
@@ -1031,7 +1059,6 @@ h2 { font-family: var(--font-display); font-weight: 750; font-stretch: 85%; font
             <li>Calibrate the engine and configure the drivetrain to improve powertrain performance.</li>
             <li>Integrate powertrain components with the chassis and electrical sub-teams ahead of competition.</li>
           </ul>
-          <p class="todo"><span class="todo-tag">To add</span>One result: a part you designed, a calibration change and its effect, or dyno or test hours.</p>
           <h2>On the stands</h2>
           <figure class="vfig" style="max-width:380px">
             <div class="vbox">
@@ -1045,7 +1072,6 @@ h2 { font-family: var(--font-display); font-weight: 750; font-stretch: 85%; font
           </figure>
           <h2>Next</h2>
           <p><span class="chip chip-plan">Planned</span> Spring 2027: design, make and inspect one powertrain part, with a GD&amp;T drawing to ASME Y14.5 and a first-article inspection.</p>
-          <p class="todo"><span class="todo-tag">To add</span>A calibration map or dyno plot, once the team is happy to share it.</p>
         </div>
         <dl class="specs">
           <div class="specs-title">Specifications</div>
@@ -1055,7 +1081,60 @@ h2 { font-family: var(--font-display); font-weight: 750; font-stretch: 85%; font
           <div><dt>Car</dt><dd>#34</dd></div>
         </dl>
       </div>
-      <nav class="pnext" aria-label="Project navigation"><a class="textlink" href="#crest">Previous: Optimizing 3D printing for space</a><a class="textlink" href="#builds">Next: Build queue</a></nav>
+      <nav class="pnext" aria-label="Project navigation"><a class="textlink" href="#crest">Previous: Optimizing 3D printing for space</a><a class="textlink" href="#flying">Next: Learning to fly</a></nav>
+    </section>
+
+    <!-- ============ FLYING ============ -->
+    <section data-view="flying">
+      <div class="phead">
+        <a class="back" href="#projects">← All projects</a>
+        <p class="eyebrow">Personal · Flight training, UK</p>
+        <h1 class="ptitle">Learning to fly</h1>
+        <p class="lede">I’m training for a UK private pilot’s license in two classic trainers: the high-wing Cessna 152 and the low-wing Piper PA-28 Warrior II.</p>
+      </div>
+      <dl class="strip">
+        <div><dt>Status</dt><dd><span class="chip chip-live">In training</span></dd></div>
+        <div><dt>License</dt><dd>UK private pilot’s license (PPL)</dd></div>
+        <div><dt>Aircraft</dt><dd>Cessna 152, Piper PA-28</dd></div>
+        <div><dt>Also</dt><dd>UK CAA drone license</dd></div>
+      </dl>
+      <div class="pbody">
+        <div class="prose">
+          <div class="gallery tall" style="margin:0 0 28px">
+            <figure class="ph vfig">
+              <div class="vbox">
+                <video id="v-flight" data-loop poster="flight-poster.jpg" muted loop playsinline preload="none" width="720" height="960" aria-label="View from the right seat of a Cessna 152 in flight: the wing strut over green fields, then the instrument panel and spinning propeller"><source src="flight.mp4" type="video/mp4"></video>
+                <div class="vctl"><button type="button" class="vbtn" data-play="v-flight" aria-pressed="true"><span class="lbl">Pause</span></button></div>
+              </div>
+              <figcaption>Over the Cotswolds in the Cessna 152, May 2026.</figcaption>
+            </figure>
+            <figure class="ph"><img src="fly-cockpit.jpg" alt="The instrument panel of a Piper PA-28 Warrior from the right seat, with the yoke, a headset and the six basic flight instruments" loading="lazy" width="900" height="1200"><figcaption>The Warrior’s panel: the six basic flight instruments on the left, radios and GPS on the right.</figcaption></figure>
+          </div>
+
+          <h2>Two trainers</h2>
+          <table class="ac">
+            <thead><tr><th scope="col"></th><th scope="col">Cessna 152</th><th scope="col">Piper PA-28-161 Warrior II</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Wing</th><td>High, strut-braced</td><td>Low, cantilever</td></tr>
+              <tr><th scope="row">Seats</th><td>2</td><td>4</td></tr>
+              <tr><th scope="row">Engine</th><td>Lycoming O-235, 110&nbsp;hp</td><td>Lycoming O-320, 160&nbsp;hp</td></tr>
+            </tbody>
+          </table>
+
+          <div class="gallery">
+            <figure class="ph"><img src="fly-warrior.jpg" alt="A white and blue Piper PA-28 Warrior II parked on grass in front of curved-roof hangars" loading="lazy" width="1200" height="900"><figcaption>The Piper PA-28 Warrior II.</figcaption></figure>
+            <figure class="ph"><img src="fly-c152.jpg" alt="A white Cessna 152 registered G-OWOW on the apron, seen from beside its tail" loading="lazy" width="1200" height="900"><figcaption>The Cessna 152 at Cotswold Flight Training.</figcaption></figure>
+          </div>
+        </div>
+        <dl class="specs">
+          <div class="specs-title">Specifications</div>
+          <div><dt>Training</dt><dd>UK private pilot’s license, in progress</dd></div>
+          <div><dt>School</dt><dd>Cotswold Flight Training</dd></div>
+          <div><dt>Aircraft flown</dt><dd>Cessna 152; Piper PA-28-161 Warrior II</dd></div>
+          <div><dt>Drones</dt><dd>UK CAA drone license</dd></div>
+        </dl>
+      </div>
+      <nav class="pnext" aria-label="Project navigation"><a class="textlink" href="#fsae">Previous: Formula SAE powertrain</a><a class="textlink" href="#builds">Next: Build queue</a></nav>
     </section>
 
     <!-- ============ BUILD QUEUE ============ -->
@@ -1128,7 +1207,7 @@ h2 { font-family: var(--font-display); font-weight: 750; font-stretch: 85%; font
           <div class="specs-title">Contact</div>
           <div><dt>Email</dt><dd class="copyline"><span id="email-about">Cole.Matthews@duke.edu</span><button type="button" class="copy" data-copy="Cole.Matthews@duke.edu" aria-controls="email-about">Copy</button></dd></div>
           <div><dt>Based</dt><dd>Durham, NC and London</dd></div>
-          <div><dt>Recognition</dt><dd>CREST Gold Award (2024); Senior British Physics Olympiad Silver Medal (2023); Ivy House Leadership Development Award (2023); Lord Mayor’s Prize for GCSE results (2022)</dd></div>
+          <div><dt>Recognition</dt><dd>CREST Gold Award (2024); Senior British Physics Olympiad Silver Medal (2023); Ivy House Leadership Development Award (2023); Transform Your Society winner, £10,000 grant (2022); Lord Mayor’s Prize for GCSE results (2022)</dd></div>
         </dl>
       </div>
     </section>
@@ -1144,7 +1223,7 @@ h2 { font-family: var(--font-display); font-weight: 750; font-stretch: 85%; font
         <div class="cv-entry">
           <div class="cv-line"><strong>Duke University, Durham, NC</strong><span class="xp-date">Expected May 2028</span></div>
           <div class="cv-role">B.S.E. Mechanical Engineering, Aerospace Engineering Certificate</div>
-          <ul><li><strong>Coursework:</strong> Thermodynamics, Dynamics, Mechatronics, Differential Equations; Controls (Spring 2027).</li>
+          <ul><li><strong>Coursework:</strong> Thermodynamics, Fluid Mechanics, Dynamics, Mechatronics, Differential Equations; Controls (Spring 2027).</li>
               <li><strong>Labs:</strong> engine cycle analysis (Brayton, dual cycle), spring-pendulum dynamics, op-amp filter design, DAQ instrumentation.</li>
               <li><strong>Study abroad:</strong> UNSW Sydney, Aug–Dec 2026.</li></ul>
         </div>
@@ -1164,7 +1243,7 @@ h2 { font-family: var(--font-display); font-weight: 750; font-stretch: 85%; font
         </div>
         <div class="cv-entry">
           <div class="cv-line"><strong>McLaren Applied, Woking</strong><span class="xp-date">May–Jul 2025</span></div>
-          <div class="cv-role">Motorsport Intern, Systems Engineering (selected as the firm’s sole intern)</div>
+          <div class="cv-role">Motorsport Intern, Systems Engineering</div>
           <ul><li>Built ECU validation workflows for the TAG-700, the standard ECU on every 2026 Formula&nbsp;1 car; calibrated lambda sensors on a Bosch emulator.</li>
               <li>Designed 12+ TAG-700 and PCU-700 test cases across multiple vehicle programs: fault detection, UI, voltage and timekeeping.</li>
               <li>Configured high-frequency telemetry in ATLAS for performance diagnostics.</li>
@@ -1189,8 +1268,8 @@ h2 { font-family: var(--font-display); font-weight: 750; font-stretch: 85%; font
               <li>Ran three misfire tests that traced the flat PV loop to incomplete combustion; 0 of 12 combustion events passed the misfire check.</li></ul>
         </div>
         <div class="cv-entry">
-          <div class="cv-line"><strong>Low-Cost Thermoelectric Refrigerator (team design project, Duke)</strong><span class="xp-date">2024–2025</span></div>
-          <ul><li>In a team of four, designed and built a portable Peltier-cooled fridge for low-income households in Bangladesh against six requirements, including temperature, portability, energy use and off-grid hold time.</li>
+          <div class="cv-line"><strong>Low-Cost Thermoelectric Refrigerator (EGR 101 design project, Duke)</strong><span class="xp-date">2024–2025</span></div>
+          <ul><li>In a team of four, built the insulated box and wired the Peltier cooling system of a portable fridge for low-income households in Bangladesh, designed against six requirements including temperature, portability, energy use and off-grid hold time.</li>
               <li>Cooled the 1.49&nbsp;ft³ box from 65&nbsp;°F to 50.2&nbsp;°F in two hours (target 35–40&nbsp;°F); it took over two hours to warm back up unpowered, which put the shortfall on the Peltier module rather than the insulation.</li></ul>
         </div>
         <div class="cv-entry">
@@ -1225,8 +1304,8 @@ h2 { font-family: var(--font-display); font-weight: 750; font-stretch: 85%; font
 <script>
 (function () {
   var root = document.documentElement;
-  var VIEWS = ["home", "adag", "mclaren", "misfire", "fridge", "crest", "fsae", "builds", "about", "resume"];
-  var PROJECT_VIEWS = ["adag", "mclaren", "misfire", "fridge", "crest", "fsae", "builds"];
+  var VIEWS = ["home", "adag", "mclaren", "misfire", "fridge", "crest", "fsae", "flying", "builds", "about", "resume"];
+  var PROJECT_VIEWS = ["adag", "mclaren", "misfire", "fridge", "crest", "fsae", "flying", "builds"];
   var reduceMotion = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
 
   /* ---------- Video loops ---------- */
